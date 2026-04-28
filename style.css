@@ -1,8 +1,8 @@
 body {
   margin: 0;
   font-family: 'Outfit', sans-serif;
-  color: #e2e8f0;
-  background: #0f172a;
+  color: #334155;
+  background: #f8fbff;
   overflow-x: hidden;
 }
 
@@ -10,47 +10,54 @@ html {
   scroll-behavior: smooth;
 }
 
-/* 🌌 ANIMATED BACKGROUND */
+/* 🌈 SOFT ANIMATED BACKGROUND */
 .bg-animation {
   position: fixed;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 20% 20%, #6366f1 0%, transparent 40%),
-              radial-gradient(circle at 80% 30%, #3b82f6 0%, transparent 40%),
-              radial-gradient(circle at 50% 80%, #8b5cf6 0%, transparent 40%);
+  background: linear-gradient(-45deg, #eef2ff, #fdf4ff, #f0f9ff, #ecfeff);
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
   z-index: -3;
-  animation: moveBg 12s infinite alternate;
 }
 
-@keyframes moveBg {
-  0% { transform: translate(0,0); }
-  100% { transform: translate(-40px, -40px); }
+@keyframes gradientMove {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
 }
 
-/* ✨ FLOATING BLUR SHAPES */
+/* ✨ FLOATING BLUR BLOBS */
 .floating-shapes span {
   position: absolute;
-  width: 300px;
-  height: 300px;
-  background: rgba(99,102,241,0.2);
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
-  filter: blur(120px);
-  animation: float 12s infinite ease-in-out;
+  filter: blur(100px);
+  opacity: 0.5;
+  animation: float 14s infinite ease-in-out;
+}
+
+/* pastel colors */
+.floating-shapes span:nth-child(1) {
+  background: #c7d2fe;
 }
 
 .floating-shapes span:nth-child(2) {
+  background: #fbcfe8;
   left: 70%;
   animation-delay: 4s;
 }
 
 .floating-shapes span:nth-child(3) {
+  background: #bae6fd;
   top: 60%;
   animation-delay: 8s;
 }
 
 @keyframes float {
   0% {transform: translateY(0);}
-  50% {transform: translateY(-80px);}
+  50% {transform: translateY(-60px);}
   100% {transform: translateY(0);}
 }
 
@@ -61,22 +68,21 @@ html {
   display: flex;
   justify-content: center;
   padding: 15px;
-  background: rgba(15, 23, 42, 0.6);
+  background: rgba(255,255,255,0.6);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
   z-index: 10;
 }
 
 .navbar a {
   margin: 0 15px;
   font-size: 18px;
-  color: #cbd5f5;
+  color: #475569;
   transition: 0.3s;
 }
 
 .navbar a:hover {
-  color: #818cf8;
-  text-shadow: 0 0 10px #6366f1;
+  color: #6366f1;
 }
 
 /* SECTIONS */
@@ -92,17 +98,17 @@ section {
 }
 
 .name {
-  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  background: linear-gradient(90deg, #6366f1, #a855f7);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .subtitle {
-  color: #a5b4fc;
+  color: #6366f1;
   letter-spacing: 3px;
 }
 
-/* 🧊 GLASS CARDS */
+/* 🌟 GLASS CARDS */
 .cards {
   display: flex;
   justify-content: center;
@@ -110,18 +116,18 @@ section {
 }
 
 .card, .box, .project-card, .timeline-item {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  backdrop-filter: blur(10px);
-  padding: 20px;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(12px);
   border-radius: 14px;
+  padding: 20px;
+  border: 1px solid rgba(0,0,0,0.05);
   transition: 0.4s;
 }
 
-/* ✨ HOVER GLOW */
+/* ✨ SOFT HOVER */
 .card:hover, .box:hover, .project-card:hover, .timeline-item:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 0 25px rgba(99,102,241,0.4);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(99,102,241,0.15);
 }
 
 /* GRID */
@@ -131,7 +137,7 @@ section {
   gap: 20px;
 }
 
-/* 🧠 SKILLS STYLE */
+/* 🧠 SKILLS */
 .skills-container {
   display: flex;
   flex-wrap: wrap;
@@ -142,21 +148,20 @@ section {
 .skill-pill {
   padding: 15px 25px;
   border-radius: 30px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.7);
+  border: 1px solid rgba(0,0,0,0.05);
   transition: 0.3s;
 }
 
 .skill-pill:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 20px rgba(99,102,241,0.5);
+  transform: scale(1.08);
+  box-shadow: 0 8px 20px rgba(99,102,241,0.2);
 }
 
 .skill-pill.main {
-  background: linear-gradient(135deg,#6366f1,#8b5cf6);
+  background: linear-gradient(135deg,#6366f1,#a855f7);
   color: white;
   font-weight: bold;
-  box-shadow: 0 0 30px rgba(99,102,241,0.6);
 }
 
 /* TIMELINE */
@@ -173,7 +178,7 @@ section {
   gap: 20px;
 }
 
-/* ✨ FADE ANIMATION */
+/* 🌈 FADE ANIMATION */
 .fade-in {
   animation: fadeUp 1s ease;
 }
