@@ -1,10 +1,9 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;500&display=swap');
 
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  background: #eaf4ff; /* light blue background */
+  background: #0C2340; /* Yankees Blue */
 }
 
 /* Container */
@@ -13,10 +12,10 @@ body {
   padding: 100px 80px;
 }
 
-/* Top tag */
+/* Tag */
 .tag {
-  background: #d6e9ff;
-  color: #1e3a8a;
+  background: rgba(255,255,255,0.1);
+  color: #E6F0FF; /* Arctic blue */
   display: inline-block;
   padding: 10px 20px;
   border-radius: 30px;
@@ -28,18 +27,18 @@ body {
 h1 {
   font-family: 'Playfair Display', serif;
   font-size: 60px;
-  color: #1e3a8a; /* dark blue */
+  color: #E6F0FF; /* Arctic blue */
   margin: 0;
 }
 
 h1 span {
-  color: #2563eb; /* brighter blue */
+  color: #3A86FF; /* Liberty blue */
 }
 
 /* Paragraph */
 p {
   font-size: 18px;
-  color: #334155;
+  color: #c7dcff; /* soft mix */
   max-width: 600px;
 }
 
@@ -58,17 +57,17 @@ p {
 
 /* Primary button */
 .primary {
-  background: #2563eb;
+  background: #3A86FF; /* Liberty blue */
   color: white;
 }
 
 /* Outline button */
 .outline {
-  border: 2px solid #2563eb;
-  color: #2563eb;
+  border: 2px solid #3A86FF;
+  color: #3A86FF;
 }
 
-/* Hover effect */
+/* Hover */
 .btn:hover {
   opacity: 0.85;
 }
