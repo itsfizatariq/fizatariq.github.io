@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Outfit:wght@300;400;500&display=swap');
 
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif;
-  background: #0C2340; /* Yankees Blue */
+  font-family: 'Outfit', sans-serif;
+  background: #0B132B; /* deep elegant navy */
 }
 
 /* Container */
@@ -12,34 +12,37 @@ body {
   padding: 100px 80px;
 }
 
-/* Tag */
+/* Top tag */
 .tag {
-  background: rgba(255,255,255,0.1);
-  color: #E6F0FF; /* Arctic blue */
-  display: inline-block;
+  background: rgba(255,255,255,0.08);
+  color: #A9B4C2;
   padding: 10px 20px;
   border-radius: 30px;
-  font-size: 12px;
+  display: inline-block;
   margin-bottom: 30px;
+  font-size: 12px;
+  letter-spacing: 1px;
 }
 
 /* Heading */
 h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 60px;
-  color: #E6F0FF; /* Arctic blue */
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 62px;
+  color: #F8FAFC;
   margin: 0;
+  letter-spacing: 1px;
 }
 
 h1 span {
-  color: #3A86FF; /* Liberty blue */
+  color: #5BC0EB; /* highlight blue */
 }
 
 /* Paragraph */
 p {
   font-size: 18px;
-  color: #c7dcff; /* soft mix */
+  color: #A9B4C2;
   max-width: 600px;
+  line-height: 1.6;
 }
 
 /* Buttons */
@@ -48,26 +51,27 @@ p {
 }
 
 .btn {
-  padding: 15px 25px;
+  padding: 15px 28px;
   border-radius: 30px;
   text-decoration: none;
-  margin-right: 10px;
+  margin-right: 12px;
   font-weight: 500;
+  transition: 0.3s;
 }
 
 /* Primary button */
 .primary {
-  background: #3A86FF; /* Liberty blue */
-  color: white;
+  background: #5BC0EB;
+  color: #0B132B;
 }
 
 /* Outline button */
 .outline {
-  border: 2px solid #3A86FF;
-  color: #3A86FF;
+  border: 2px solid #5BC0EB;
+  color: #5BC0EB;
 }
 
-/* Hover */
+/* Hover effect */
 .btn:hover {
   opacity: 0.85;
 }
