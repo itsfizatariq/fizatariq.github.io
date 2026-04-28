@@ -187,3 +187,14 @@ section {
   from {opacity:0; transform:translateY(40px);}
   to {opacity:1; transform:translateY(0);}
 }
+/* 🌌 PARALLAX SMOOTHNESS */
+.floating-shapes span,
+.bg-icons i {
+  will-change: transform;
+  transition: transform 0.2s linear;
+}
+
+/* optional depth fix */
+.bg-animation {
+  transform: translateZ(0);
+}
