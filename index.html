@@ -2,43 +2,132 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My Portfolio</title>
-
-  <!-- Connect CSS -->
+  <title>Portfolio</title>
   <link rel="stylesheet" href="style.css">
 
-  <!-- Google Fonts (for style) -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-  <section class="hero">
-    <div class="container">
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">RB</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
 
-      <!-- Top tag -->
-      <div class="tag">COMPUTER SCIENCE UNDERGRAD</div>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="container">
+    <p class="subtitle">COMPUTER SCIENCE UNDERGRAD</p>
+    <h1>Hey There,<br>I'm <span>Your Name</span></h1>
+    <p class="desc">A passionate CS student who loves building creative and real-world solutions.</p>
+  </div>
+</section>
 
-      <!-- Main heading -->
-      <h1>
-        Hey There,<br>
-        It's Me <span>FIZA TARIQ</span>
-      </h1>
+<!-- ABOUT -->
+<section id="about">
+  <p class="subtitle">WHO I AM</p>
+  <h2>About Me</h2>
 
-      <!-- Description -->
+  <div class="about-container">
+    <div class="about-text">
       <p>
-       "I am a passionate student with a strong interest in technology and software development.
-        I aim to continuously learn, grow, and build projects that solve real-world problems."
+        I'm a 4th semester BCS student at Fatima Jinnah Women University.
+        I enjoy building real-world applications and exploring new technologies.
       </p>
+    </div>
 
-      <!-- Buttons -->
-      <div class="buttons">
-        <a href="#" class="btn primary">View My Projects</a>
-        <a href="#" class="btn outline">Get In Touch</a>
+    <div class="about-cards">
+      <div class="card">
+        <h4>DEGREE</h4>
+        <p>BCS — Computer Science</p>
       </div>
 
+      <div class="card">
+        <h4>UNIVERSITY</h4>
+        <p>FJWU</p>
+      </div>
+
+      <div class="card">
+        <h4>SEMESTER</h4>
+        <p>4th Semester</p>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="subtitle">WHAT I KNOW</p>
+  <h2>Skills</h2>
+
+  <div class="skills-grid">
+    <div class="skill-card">C<span>Systems</span></div>
+    <div class="skill-card">C++<span>OOP</span></div>
+    <div class="skill-card">Java<span>OOP</span></div>
+    <div class="skill-card">Python<span>Scripting</span></div>
+    <div class="skill-card">Database<span>SQL</span></div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <p class="subtitle">ACADEMIC JOURNEY</p>
+  <h2>Education</h2>
+
+  <div class="edu-card">
+    <h3>BCS — Computer Science</h3>
+    <p class="blue">Fatima Jinnah Women University</p>
+    <p>2022 – Present</p>
+  </div>
+
+  <div class="edu-card">
+    <h3>FSc Pre-Engineering</h3>
+    <p class="blue">Intermediate Board</p>
+    <p>Completed</p>
+  </div>
+
+  <div class="edu-card">
+    <h3>Matric — Science</h3>
+    <p class="blue">Secondary School</p>
+    <p>Completed</p>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <h2>Projects</h2>
+
+  <div class="projects-grid">
+    <div class="project-card">
+      <h3>Sports Management</h3>
+      <p>C++ system for managing teams and matches.</p>
+    </div>
+
+    <div class="project-card">
+      <h3>Grade Calculator</h3>
+      <p>Python app for GPA and reports.</p>
+    </div>
+
+    <div class="project-card">
+      <h3>Library System</h3>
+      <p>SQL database for book management.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Email: your@email.com</p>
+</section>
 
 </body>
 </html>
