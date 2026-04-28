@@ -1,85 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>My Portfolio</title>
+<link rel="stylesheet" href="style.css">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 
 <body>
 
 <!-- NAVBAR -->
 <nav class="navbar">
-  <div class="logo">FIZA</div>
   <div class="nav-links">
-    <a href="#about"><i class="fa fa-user"></i> About</a>
-    <a href="#skills"><i class="fa fa-code"></i> Skills</a>
-    <a href="#projects"><i class="fa fa-folder"></i> Projects</a>
-    <a href="#contact"><i class="fa fa-envelope"></i> Contact</a>
+    <a href="#home"><i class="fa fa-house"></i></a>
+    <a href="#about"><i class="fa fa-user"></i></a>
+    <a href="#skills"><i class="fa fa-code"></i></a>
+    <a href="#qualification"><i class="fa fa-graduation-cap"></i></a>
+    <a href="#projects"><i class="fa fa-folder"></i></a>
+    <a href="#hobbies"><i class="fa fa-heart"></i></a>
+    <a href="#contact"><i class="fa fa-envelope"></i></a>
   </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="container">
-    <p class="subtitle">COMPUTER SCIENCE UNDERGRADUATE</p>
-    <h1>Hey There,<br>It's <span>FIZA TARIQ</span></h1>
-    <p>A passionate student building interest in computer sciences.</p>
-  </div>
+<section id="home" class="hero fade-in">
+  <p class="subtitle">COMPUTER SCIENCE STUDENT</p>
+  <h1>Hey There,<br>I'm <span>Your Name</span></h1>
+  <p>A passionate student building elegant and creative solutions.</p>
 </section>
 
 <!-- ABOUT -->
-<section id="about">
+<section id="about" class="fade-in">
   <h2><i class="fa fa-user"></i> About Me</h2>
+  <p>
+    I'm a CS student passionate about creativity and coding. I enjoy building real-world projects.
+  </p>
 
-  <div class="about">
-    <p>
-      I'm a CS student passionate about creativity and coding.
-      I enjoy building real-world projects and learning new technologies.
-    </p>
-
-    <div class="cards">
-      <div class="card"><h4>Degree</h4><p>Bachelors in Computer Sciences</p></div>
-      <div class="card"><h4>University</h4><p>Fatima Jinnah Women University</p></div>
-      <div class="card"><h4>Semester</h4><p>4th</p></div>
-    </div>
+  <div class="cards">
+    <div class="card">BCS</div>
+    <div class="card">FJWU</div>
+    <div class="card">4th Semester</div>
   </div>
 </section>
 
 <!-- SKILLS -->
-<section id="skills">
+<section id="skills" class="fade-in">
   <h2><i class="fa fa-code"></i> Skills</h2>
 
   <div class="grid">
-    <div class="box">C</div>
-    <div class="box">C++</div>
-    <div class="box">Java</div>
-    <div class="box">Python</div>
-    <div class="box">SQL</div>
+    <div class="box"><i class="fa fa-c"></i><p>C</p></div>
+    <div class="box"><i class="fa fa-code"></i><p>C++</p></div>
+    <div class="box"><i class="fa fa-laptop-code"></i><p>Java</p></div>
+    <div class="box"><i class="fa fa-python"></i><p>Python</p></div>
+    <div class="box"><i class="fa fa-database"></i><p>SQL</p></div>
+  </div>
+</section>
+
+<!-- QUALIFICATION -->
+<section id="qualification" class="fade-in">
+  <h2><i class="fa fa-graduation-cap"></i> Qualifications</h2>
+
+  <div class="timeline">
+    <div class="timeline-item">BCS - Computer Science</div>
+    <div class="timeline-item">FSc Pre-Engineering</div>
+    <div class="timeline-item">Matric - Science</div>
   </div>
 </section>
 
 <!-- PROJECTS -->
-<section id="projects">
+<section id="projects" class="fade-in">
   <h2><i class="fa fa-folder"></i> Projects</h2>
 
   <div class="grid">
-    <div class="card">Sports Management</div>
+    <div class="card">Sports Management System</div>
     <div class="card">Grade Calculator</div>
     <div class="card">Library System</div>
   </div>
 </section>
 
+<!-- HOBBIES -->
+<section id="hobbies" class="fade-in">
+  <h2><i class="fa fa-heart"></i> Hobbies</h2>
+
+  <div class="grid">
+    <div class="box"><i class="fa fa-book"></i><p>Reading</p></div>
+    <div class="box"><i class="fa fa-code"></i><p>Coding</p></div>
+    <div class="box"><i class="fa fa-laptop"></i><p>Exploring Tech</p></div>
+  </div>
+</section>
+
 <!-- CONTACT -->
-<section id="contact">
+<section id="contact" class="fade-in">
   <h2><i class="fa fa-envelope"></i> Contact</h2>
-  <p>Email: fizat0250@gmail.com</p>
+  <p>Email: your@email.com</p>
 </section>
 
 </body>
