@@ -22,6 +22,7 @@
 
 <!-- BACKGROUND -->
 <div class="bg-animation"></div>
+<div class="tech-grid"></div>
 <div class="bg-icons">
   <i class="fa fa-code"></i>
   <i class="fa fa-database"></i>
@@ -31,6 +32,10 @@
   <i class="fa fa-server"></i>
   <i class="fa fa-network-wired"></i>
   <i class="fa fa-terminal"></i>
+  <i class="fa fa-cpu"></i>
+  <i class="fa fa-sitemap"></i>
+  <i class="fa fa-brain"></i>
+  <i class="fa fa-infinity"></i>
 </div>
 <div class="floating-shapes">
   <span></span>
@@ -51,6 +56,9 @@
   <a href="#projects"      class="nav-link" data-section="projects"><i class="fa fa-folder"></i><span>Projects</span></a>
   <a href="#hobbies"       class="nav-link" data-section="hobbies"><i class="fa fa-heart"></i><span>Interests</span></a>
   <a href="#contact"       class="nav-link" data-section="contact"><i class="fa fa-envelope"></i><span>Contact</span></a>
+  <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">
+    <i class="fa fa-moon" id="themeIcon"></i>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -149,15 +157,15 @@
     <div class="project-card stagger-1">
       <div class="project-icon"><i class="fa fa-code"></i></div>
       <h3>Heap Insertion Implementation</h3>
-      <span class="project-tag">C++</span>
+      <span class="project-tag">C++ · DSA</span>
       <p>Implemented heap insertion maintaining proper heap structure.</p>
     </div>
 
     <div class="project-card stagger-2">
       <div class="project-icon"><i class="fa fa-microchip"></i></div>
       <h3>Number System Converter</h3>
-      <span class="project-tag">Assembly</span>
-      <p>Converted numbers between binary, decimal and hexadecimal.</p>
+      <span class="project-tag">Assembly · COAL</span>
+      <p>Converted numbers between binary, decimal and hexadecimal using Assembly language.</p>
     </div>
 
     <div class="project-card stagger-3">
@@ -170,8 +178,36 @@
     <div class="project-card stagger-4">
       <div class="project-icon"><i class="fa fa-globe"></i></div>
       <h3>Online Academy System</h3>
-      <span class="project-tag">OOP + Database</span>
+      <span class="project-tag">OOP · Database</span>
       <p>Developed system for managing students, courses and records.</p>
+    </div>
+
+    <div class="project-card stagger-5">
+      <div class="project-icon"><i class="fa fa-building"></i></div>
+      <h3>University Management System</h3>
+      <span class="project-tag">C++ · OOP</span>
+      <p>Full-featured system for managing university departments, students and faculty using object-oriented design.</p>
+    </div>
+
+    <div class="project-card stagger-6">
+      <div class="project-icon"><i class="fa fa-layer-group"></i></div>
+      <h3>Tower of Hanoi</h3>
+      <span class="project-tag">C · PF</span>
+      <p>Recursive solution to the Tower of Hanoi problem demonstrating fundamental programming concepts.</p>
+    </div>
+
+    <div class="project-card stagger-7">
+      <div class="project-icon"><i class="fa fa-chart-line"></i></div>
+      <h3>Demography, Weather & Leslie Matrix Models</h3>
+      <span class="project-tag">Python · Linear Algebra</span>
+      <p>Applied matrix operations for Google demography trends, weather prediction and population modelling using the Leslie matrix.</p>
+    </div>
+
+    <div class="project-card stagger-8">
+      <div class="project-icon"><i class="fa fa-temperature-half"></i></div>
+      <h3>Arduino Temperature Control Fan</h3>
+      <span class="project-tag">Arduino · DLD</span>
+      <p>Designed a digital logic circuit that automatically adjusts fan speed based on ambient temperature readings.</p>
     </div>
 
   </div>
@@ -209,6 +245,22 @@
 </button>
 
 <script>
+// ── Dark / Light mode ──
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon   = document.getElementById('themeIcon');
+const savedTheme  = localStorage.getItem('theme') || 'light';
+
+document.documentElement.setAttribute('data-theme', savedTheme);
+themeIcon.className = savedTheme === 'dark' ? 'fa fa-sun' : 'fa fa-moon';
+
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  themeIcon.className = next === 'dark' ? 'fa fa-sun' : 'fa fa-moon';
+});
+
 // ── Intersection Observer: reveal sections on scroll ──
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -224,7 +276,7 @@ document.querySelectorAll('.section-reveal').forEach(el => observer.observe(el))
 // ── Typewriter for hero name ──
 const fullName = "FIZA TARIQ";
 let charIdx = 0;
-const nameEl = document.getElementById('typedName');
+const nameEl  = document.getElementById('typedName');
 const blinkEl = document.querySelector('.cursor-blink');
 
 function typeWriter() {
