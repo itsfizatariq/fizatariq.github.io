@@ -370,78 +370,61 @@ document.addEventListener('mousemove', e => {
   glow.style.top  = e.clientY + 'px';
 });
 
-// ── Connecting-dots tech canvas ──
+// ── Matrix digital-rain tech canvas ──
 (function () {
   const canvas = document.getElementById('techCanvas');
   const ctx = canvas.getContext('2d');
-  const PARTICLE_COUNT = 70;  // number of animated dots
-  const MAX_DIST = 150;       // pixel distance within which connecting lines are drawn
-  let particles = [];
+  const CHARS = '01アイウエオカキクケコ{}[]<>/\\|ABCDEFabcdef#$%@&*!?';
+  const FONT_SIZE = 13;
+  let drops = [];
   let animId;
 
   function resize() {
     canvas.width  = window.innerWidth;
     canvas.height = window.innerHeight;
+    const cols = Math.floor(canvas.width / FONT_SIZE);
+    drops = Array.from({ length: cols }, () => Math.random() * -(canvas.height / FONT_SIZE));
   }
 
-  function spawn() {
-    particles = [];
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-      particles.push({
-        x:  Math.random() * canvas.width,
-        y:  Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.55,
-        vy: (Math.random() - 0.5) * 0.55,
-        r:  Math.random() * 1.8 + 1.2
-      });
-    }
-  }
-
-  function colors() {
+  function getColors() {
     const dark = document.documentElement.getAttribute('data-theme') === 'dark';
     return dark
-      ? { dot: 'rgba(129,140,248,', line: 'rgba(129,140,248,' }
-      : { dot: 'rgba(99,102,241,',  line: 'rgba(99,102,241,' };
+      ? { head: 'rgba(165,180,252,0.85)', trail: 'rgba(129,140,248,0.3)', fade: 'rgba(15,23,42,0.08)' }
+      : { head: 'rgba(79,70,229,0.75)',   trail: 'rgba(99,102,241,0.22)', fade: 'rgba(248,250,252,0.08)' };
   }
 
   function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const col = colors();
+    const col = getColors();
+    ctx.fillStyle = col.fade;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.font = `${FONT_SIZE}px "Courier New", monospace`;
 
-    for (const p of particles) {
-      p.x += p.vx;
-      p.y += p.vy;
-      if (p.x < 0 || p.x > canvas.width)  { p.vx *= -1; p.x = Math.max(0, Math.min(canvas.width,  p.x)); }
-      if (p.y < 0 || p.y > canvas.height) { p.vy *= -1; p.y = Math.max(0, Math.min(canvas.height, p.y)); }
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = col.dot + '0.75)';
-      ctx.fill();
-    }
+    for (let i = 0; i < drops.length; i++) {
+      const char = CHARS[Math.floor(Math.random() * CHARS.length)];
+      const x = i * FONT_SIZE;
+      const y = drops[i] * FONT_SIZE;
 
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx   = particles[i].x - particles[j].x;
-        const dy   = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < MAX_DIST) {
-          const alpha = (1 - dist / MAX_DIST) * 0.55;
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = col.line + alpha + ')';
-          ctx.lineWidth = 0.9;
-          ctx.stroke();
-        }
+      // Bright head character
+      ctx.fillStyle = col.head;
+      ctx.fillText(char, x, y);
+
+      // Slightly dimmer character one step behind for trail depth
+      if (drops[i] > 1) {
+        ctx.fillStyle = col.trail;
+        ctx.fillText(CHARS[Math.floor(Math.random() * CHARS.length)], x, y - FONT_SIZE);
       }
+
+      if (y > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+      drops[i] += 0.4;
     }
 
     animId = requestAnimationFrame(draw);
   }
 
-  window.addEventListener('resize', () => { resize(); spawn(); });
+  window.addEventListener('resize', () => { resize(); });
   resize();
-  spawn();
   draw();
 })();
 </script>
