@@ -294,7 +294,7 @@ function applyTheme(theme) {
   bgAnimation.style.backgroundImage = `linear-gradient(-45deg, ${c[0]}, ${c[1]}, ${c[2]}, ${c[3]})`;
 }
 
-applyTheme(localStorage.getItem('theme') || 'light');
+applyTheme(localStorage.getItem('theme') || 'dark');
 
 themeToggle.addEventListener('click', () => {
   const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
