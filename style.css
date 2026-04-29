@@ -68,34 +68,97 @@ html { scroll-behavior: smooth; }
   border-radius: 0 2px 2px 0;
 }
 
-/* ── Background (subtle mesh) ── */
+/* ── Animated Background ── */
 .bg-animation {
   position: fixed;
-  inset: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(-45deg, var(--bg-g1), var(--bg-g2), var(--bg-g3), var(--bg-g4));
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+  z-index: -3;
+  transform: translateZ(0);
+}
+
+@keyframes gradientMove {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ── Tech Grid Overlay ── */
+.tech-grid {
+  position: fixed;
+  width: 100%; height: 100%;
   z-index: -2;
   pointer-events: none;
-  background:
-    radial-gradient(900px circle at 8% 12%, rgba(99,102,241,0.10), transparent 55%),
-    radial-gradient(850px circle at 92% 18%, rgba(168,85,247,0.08), transparent 58%),
-    radial-gradient(900px circle at 50% 85%, rgba(236,72,153,0.06), transparent 60%),
-    linear-gradient(180deg, rgba(255,255,255,0.65), rgba(255,255,255,0.2));
-  opacity: 0.85;
+  background-image:
+    linear-gradient(rgba(99,102,241, var(--tech-grid-opacity)) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99,102,241, var(--tech-grid-opacity)) 1px, transparent 1px);
+  background-size: 60px 60px;
 }
 
-[data-theme="dark"] .bg-animation {
-  background:
-    radial-gradient(900px circle at 8% 12%, rgba(99,102,241,0.14), transparent 55%),
-    radial-gradient(850px circle at 92% 18%, rgba(168,85,247,0.12), transparent 58%),
-    radial-gradient(900px circle at 50% 85%, rgba(236,72,153,0.08), transparent 60%),
-    linear-gradient(180deg, rgba(15,23,42,0.9), rgba(7,15,30,0.65));
-  opacity: 0.9;
+/* ── Tech Canvas (matrix rain) ── */
+.tech-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -1;
+  pointer-events: none;
 }
 
-/* ── BG Icons (hidden) ── */
-.bg-icons { display: none; }
+/* ── BG Icons ── */
+.bg-icons {
+  position: fixed;
+  width: 100%; height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
 
-/* ── Floating Blobs (hidden) ── */
-.floating-shapes { display: none; }
+.bg-icons i {
+  position: absolute;
+  font-size: 32px;
+  color: rgba(99,102,241, var(--icon-opacity));
+  will-change: transform;
+  transition: transform 0.2s linear;
+}
+
+.bg-icons i:nth-child(1)  { top: 8%;  left: 6%;  }
+.bg-icons i:nth-child(2)  { top: 18%; left: 82%; }
+.bg-icons i:nth-child(3)  { top: 35%; left: 12%; }
+.bg-icons i:nth-child(4)  { top: 52%; left: 72%; }
+.bg-icons i:nth-child(5)  { top: 68%; left: 22%; }
+.bg-icons i:nth-child(6)  { top: 78%; left: 62%; }
+.bg-icons i:nth-child(7)  { top: 88%; left: 38%; }
+.bg-icons i:nth-child(8)  { top: 28%; left: 48%; }
+.bg-icons i:nth-child(9)  { top: 45%; left: 90%; }
+.bg-icons i:nth-child(10) { top: 60%; left: 3%;  }
+.bg-icons i:nth-child(11) { top: 90%; left: 15%; }
+.bg-icons i:nth-child(12) { top: 14%; left: 35%; }
+
+/* ── Floating Blobs ── */
+.floating-shapes span {
+  position: fixed;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.40;
+  animation: floatBlob 14s infinite ease-in-out;
+  will-change: transform;
+  z-index: -1;
+}
+
+[data-theme="dark"] .floating-shapes span { opacity: 0.18; }
+
+.floating-shapes span:nth-child(1) { background: #c7d2fe; top: 5%;  left: 5%; }
+.floating-shapes span:nth-child(2) { background: #fbcfe8; top: 30%; left: 70%; animation-delay: 4s; }
+.floating-shapes span:nth-child(3) { background: #bae6fd; top: 65%; left: 10%; animation-delay: 8s; }
+.floating-shapes span:nth-child(4) { background: #d9f99d; top: 80%; left: 75%; animation-delay: 11s; }
+
+@keyframes floatBlob {
+  0%   { transform: translateY(0) scale(1); }
+  50%  { transform: translateY(-55px) scale(1.05); }
+  100% { transform: translateY(0) scale(1); }
+}
 
 /* ── Custom Cursor Glow ── */
 .cursor-glow {
