@@ -68,42 +68,27 @@ html { scroll-behavior: smooth; }
   border-radius: 0 2px 2px 0;
 }
 
-/* ── Background (plain, handled by body) ── */
-.bg-animation { display: none; }
-
-/* ── Tech Circuit Overlay ── */
-.tech-circuit {
+/* ── Background (subtle mesh) ── */
+.bg-animation {
   position: fixed;
   inset: 0;
   z-index: -2;
   pointer-events: none;
-  background-image:
-    linear-gradient(120deg, rgba(99,102,241, var(--tech-grid-opacity)) 0 1px, transparent 1px 100%),
-    linear-gradient(300deg, rgba(99,102,241, var(--tech-grid-opacity)) 0 1px, transparent 1px 100%),
-    linear-gradient(90deg,
-      transparent 0 22%,
-      rgba(99,102,241, var(--tech-grid-opacity)) 22% 23%,
-      transparent 23% 68%,
-      rgba(99,102,241, var(--tech-grid-opacity)) 68% 69%,
-      transparent 69% 100%),
-    linear-gradient(0deg,
-      transparent 0 34%,
-      rgba(99,102,241, var(--tech-grid-opacity)) 34% 35%,
-      transparent 35% 76%,
-      rgba(99,102,241, var(--tech-grid-opacity)) 76% 77%,
-      transparent 77% 100%);
-  background-size: 320px 320px, 260px 260px, 240px 240px, 300px 300px;
-  background-position: 0 0, 80px 140px, 40px 60px, 120px 20px;
+  background:
+    radial-gradient(900px circle at 8% 12%, rgba(99,102,241,0.10), transparent 55%),
+    radial-gradient(850px circle at 92% 18%, rgba(168,85,247,0.08), transparent 58%),
+    radial-gradient(900px circle at 50% 85%, rgba(236,72,153,0.06), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,0.65), rgba(255,255,255,0.2));
   opacity: 0.85;
 }
 
-/* ── Tech Canvas (matrix rain) ── */
-.tech-canvas {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  z-index: -1;
-  pointer-events: none;
+[data-theme="dark"] .bg-animation {
+  background:
+    radial-gradient(900px circle at 8% 12%, rgba(99,102,241,0.14), transparent 55%),
+    radial-gradient(850px circle at 92% 18%, rgba(168,85,247,0.12), transparent 58%),
+    radial-gradient(900px circle at 50% 85%, rgba(236,72,153,0.08), transparent 60%),
+    linear-gradient(180deg, rgba(15,23,42,0.9), rgba(7,15,30,0.65));
+  opacity: 0.9;
 }
 
 /* ── BG Icons (hidden) ── */
