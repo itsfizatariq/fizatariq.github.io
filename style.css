@@ -797,10 +797,8 @@ section {
   font-size: 14px;
   font-weight: 500;
   color: var(--color-text);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   transition: color 0.35s ease;
+  word-break: break-all;
 }
 
 .contact-btn {
