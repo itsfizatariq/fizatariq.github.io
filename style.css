@@ -72,7 +72,7 @@ html { scroll-behavior: smooth; }
 .bg-animation { display: none; }
 
 /* ── Tech Circuit Overlay ── */
-.tech-grid {
+.tech-circuit {
   position: fixed;
   inset: 0;
   z-index: -2;
