@@ -547,8 +547,8 @@ section {
 }
 
 .skill-pill.main .skill-icon { color: white; }
-.skill-pill.main .skill-pill h4,
-.skill-pill.main .skill-pill p { color: white; }
+.skill-pill.main h4,
+.skill-pill.main p { color: white; }
 .skill-pill.main:hover { transform: scale(1.07) translateY(-3px); box-shadow: 0 12px 28px rgba(99,102,241,0.4); }
 
 /* ── Timeline ── */
