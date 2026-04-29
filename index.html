@@ -23,7 +23,13 @@
 <!-- BACKGROUND -->
 <div class="bg-animation" id="bgAnimation"></div>
 <div class="tech-grid"></div>
-<canvas class="tech-canvas" id="techCanvas"></canvas>
+<div class="bg-orbs" aria-hidden="true">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
 <div class="bg-icons">
   <i class="fa fa-code"></i>
   <i class="fa fa-database"></i>
@@ -369,64 +375,6 @@ document.addEventListener('mousemove', e => {
   glow.style.left = e.clientX + 'px';
   glow.style.top  = e.clientY + 'px';
 });
-
-// ── Matrix digital-rain tech canvas ──
-(function () {
-  const canvas = document.getElementById('techCanvas');
-  const ctx = canvas.getContext('2d');
-  const CHARS = '01アイウエオカキクケコ{}[]<>/\\|ABCDEFabcdef#$%@&*!?';
-  const FONT_SIZE = 13;
-  let drops = [];
-  let animId;
-
-  function resize() {
-    canvas.width  = window.innerWidth;
-    canvas.height = window.innerHeight;
-    const cols = Math.floor(canvas.width / FONT_SIZE);
-    drops = Array.from({ length: cols }, () => Math.random() * -(canvas.height / FONT_SIZE));
-  }
-
-  function getColors() {
-    const dark = document.documentElement.getAttribute('data-theme') === 'dark';
-    return dark
-      ? { head: 'rgba(165,180,252,0.85)', trail: 'rgba(129,140,248,0.3)', fade: 'rgba(15,23,42,0.08)' }
-      : { head: 'rgba(79,70,229,0.75)',   trail: 'rgba(99,102,241,0.22)', fade: 'rgba(248,250,252,0.08)' };
-  }
-
-  function draw() {
-    const col = getColors();
-    ctx.fillStyle = col.fade;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.font = `${FONT_SIZE}px "Courier New", monospace`;
-
-    for (let i = 0; i < drops.length; i++) {
-      const char = CHARS[Math.floor(Math.random() * CHARS.length)];
-      const x = i * FONT_SIZE;
-      const y = drops[i] * FONT_SIZE;
-
-      // Bright head character
-      ctx.fillStyle = col.head;
-      ctx.fillText(char, x, y);
-
-      // Slightly dimmer character one step behind for trail depth
-      if (drops[i] > 1) {
-        ctx.fillStyle = col.trail;
-        ctx.fillText(CHARS[Math.floor(Math.random() * CHARS.length)], x, y - FONT_SIZE);
-      }
-
-      if (y > canvas.height && Math.random() > 0.975) {
-        drops[i] = 0;
-      }
-      drops[i] += 0.4;
-    }
-
-    animId = requestAnimationFrame(draw);
-  }
-
-  window.addEventListener('resize', () => { resize(); });
-  resize();
-  draw();
-})();
 </script>
 
 </body>
