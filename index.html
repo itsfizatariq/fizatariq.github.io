@@ -2,41 +2,27 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Fiza Tariq Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiza Tariq — Portfolio</title>
 
 <link rel="stylesheet" href="style.css">
 
 <!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <!-- Icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
-  
-<script>
-window.addEventListener("scroll", function() {
-  let scrollY = window.scrollY;
 
-  // floating blur shapes
-  document.querySelectorAll(".floating-shapes span").forEach((el, i) => {
-    let speed = (i + 1) * 0.2;
-    el.style.transform = `translateY(${scrollY * speed}px)`;
-  });
-
-  // background icons
-  document.querySelectorAll(".bg-icons i").forEach((el, i) => {
-    let speed = (i + 1) * 0.1;
-    el.style.transform = `translateY(${scrollY * speed}px)`;
-  });
-});
-</script>
-  
 <body>
+
+<!-- SCROLL PROGRESS BAR -->
+<div class="scroll-progress" id="scrollProgress"></div>
 
 <!-- BACKGROUND -->
 <div class="bg-animation"></div>
-  <div class="bg-icons">
+<div class="bg-icons">
   <i class="fa fa-code"></i>
   <i class="fa fa-database"></i>
   <i class="fa fa-laptop-code"></i>
@@ -50,87 +36,102 @@ window.addEventListener("scroll", function() {
   <span></span>
   <span></span>
   <span></span>
+  <span></span>
 </div>
 
+<!-- CURSOR GLOW -->
+<div class="cursor-glow" id="cursorGlow"></div>
+
 <!-- NAVBAR -->
-<nav class="navbar">
-  <a href="#home"><i class="fa fa-house"></i></a>
-  <a href="#about"><i class="fa fa-user"></i></a>
-  <a href="#skills"><i class="fa fa-code"></i></a>
-  <a href="#qualification"><i class="fa fa-graduation-cap"></i></a>
-  <a href="#projects"><i class="fa fa-folder"></i></a>
-  <a href="#hobbies"><i class="fa fa-heart"></i></a>
-  <a href="#contact"><i class="fa fa-envelope"></i></a>
+<nav class="navbar" id="navbar">
+  <a href="#home"          class="nav-link" data-section="home"><i class="fa fa-house"></i><span>Home</span></a>
+  <a href="#about"         class="nav-link" data-section="about"><i class="fa fa-user"></i><span>About</span></a>
+  <a href="#skills"        class="nav-link" data-section="skills"><i class="fa fa-code"></i><span>Skills</span></a>
+  <a href="#qualification" class="nav-link" data-section="qualification"><i class="fa fa-graduation-cap"></i><span>Education</span></a>
+  <a href="#projects"      class="nav-link" data-section="projects"><i class="fa fa-folder"></i><span>Projects</span></a>
+  <a href="#hobbies"       class="nav-link" data-section="hobbies"><i class="fa fa-heart"></i><span>Interests</span></a>
+  <a href="#contact"       class="nav-link" data-section="contact"><i class="fa fa-envelope"></i><span>Contact</span></a>
 </nav>
 
 <!-- HERO -->
-<section id="home" class="hero fade-in">
-  <p class="subtitle">COMPUTER SCIENCE STUDENT</p>
-  <h1>Hey There,<br>I'm <span class="name">FIZA TARIQ</span></h1>
-  <p>Building elegant, creative and meaningful digital experiences.</p>
+<section id="home" class="hero">
+  <div class="hero-content">
+    <p class="subtitle animate-slide-down">✦ COMPUTER SCIENCE STUDENT ✦</p>
+    <h1 class="animate-slide-up">Hey There,<br>I'm <span class="name" id="typedName"></span><span class="cursor-blink">|</span></h1>
+    <p class="hero-desc animate-fade">Building elegant, creative and meaningful digital experiences.</p>
+    <a href="#projects" class="cta-btn animate-fade">
+      <span>View My Work</span> <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="scroll-indicator">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 </section>
 
 <!-- ABOUT -->
-<section id="about" class="fade-in">
-  <h2><i class="fa fa-user"></i> Personal Profile</h2>
-  <p>
+<section id="about" class="section-reveal">
+  <div class="section-header">
+    <h2><i class="fa fa-user"></i> Personal Profile</h2>
+    <div class="section-line"></div>
+  </div>
+  <p class="section-desc">
     I'm a passionate Computer Science student who enjoys coding,
     designing and exploring tech.
   </p>
-
   <div class="cards">
-    <div class="card"><i class="fa fa-graduation-cap"></i> Bachlors in Computer Science</div>
-    <div class="card"><i class="fa fa-university"></i> Fatima Jinnah Women University</div>
-    <div class="card"><i class="fa fa-layer-group"></i> 4th Semester</div>
+    <div class="card stagger-1"><i class="fa fa-graduation-cap card-icon"></i><span>Bachelors in Computer Science</span></div>
+    <div class="card stagger-2"><i class="fa fa-university card-icon"></i><span>Fatima Jinnah Women University</span></div>
+    <div class="card stagger-3"><i class="fa fa-layer-group card-icon"></i><span>4th Semester</span></div>
   </div>
 </section>
 
 <!-- SKILLS -->
-<section id="skills" class="fade-in">
-  <h2><i class="fa fa-code"></i> Technical Skills</h2>
-
+<section id="skills" class="section-reveal">
+  <div class="section-header">
+    <h2><i class="fa fa-code"></i> Technical Skills</h2>
+    <div class="section-line"></div>
+  </div>
   <div class="skills-container">
-
-    <div class="skill-pill">
-      <i class="fa fa-laptop-code"></i>
-      <h4>Programming</h4>
-      <p>C, C++, Python</p>
+    <div class="skill-pill stagger-1">
+      <i class="fa fa-laptop-code skill-icon"></i>
+      <div><h4>Programming</h4><p>C, C++, Python</p></div>
     </div>
-
-    <div class="skill-pill"><i class="fa fa-microchip"></i> Assembly</div>
-
-    <div class="skill-pill main">Computer Science</div>
-
-    <div class="skill-pill"><i class="fa fa-database"></i> Databases</div>
-
-    <div class="skill-pill"><i class="fa fa-globe"></i> Networking</div>
-
-    <div class="skill-pill"><i class="fa fa-palette"></i> Graphic Design</div>
-
+    <div class="skill-pill stagger-2"><i class="fa fa-microchip skill-icon"></i><span>Assembly</span></div>
+    <div class="skill-pill main stagger-3"><i class="fa fa-star skill-icon"></i><span>Computer Science</span></div>
+    <div class="skill-pill stagger-4"><i class="fa fa-database skill-icon"></i><span>Databases</span></div>
+    <div class="skill-pill stagger-5"><i class="fa fa-globe skill-icon"></i><span>Networking</span></div>
+    <div class="skill-pill stagger-6"><i class="fa fa-palette skill-icon"></i><span>Graphic Design</span></div>
   </div>
 </section>
 
 <!-- QUALIFICATIONS -->
-<section id="qualification" class="fade-in">
-  <h2><i class="fa fa-graduation-cap"></i> Academic Background</h2>
-
+<section id="qualification" class="section-reveal">
+  <div class="section-header">
+    <h2><i class="fa fa-graduation-cap"></i> Academic Background</h2>
+    <div class="section-line"></div>
+  </div>
   <div class="timeline">
 
-    <div class="timeline-item">
+    <div class="timeline-item stagger-1">
+      <div class="timeline-dot"></div>
       <h3>BCS — Computer Science</h3>
-      <span>2022 – Present</span>
+      <span class="timeline-date"><i class="fa fa-calendar-alt"></i> 2022 – Present</span>
       <p>Learning programming, databases and software development.</p>
     </div>
 
-    <div class="timeline-item">
+    <div class="timeline-item stagger-2">
+      <div class="timeline-dot"></div>
       <h3>ICS</h3>
-      <span>Completed</span>
+      <span class="timeline-date"><i class="fa fa-calendar-alt"></i> Completed</span>
       <p>Strong foundation in mathematics and problem solving.</p>
     </div>
 
-    <div class="timeline-item">
+    <div class="timeline-item stagger-3">
+      <div class="timeline-dot"></div>
       <h3>Matric — Science</h3>
-      <span>Completed</span>
+      <span class="timeline-date"><i class="fa fa-calendar-alt"></i> Completed</span>
       <p>Developed early interest in technology and computing.</p>
     </div>
 
@@ -138,59 +139,145 @@ window.addEventListener("scroll", function() {
 </section>
 
 <!-- PROJECTS -->
-<section id="projects" class="fade-in">
-  <h2><i class="fa fa-folder"></i> Projects</h2>
-
+<section id="projects" class="section-reveal">
+  <div class="section-header">
+    <h2><i class="fa fa-folder"></i> Projects</h2>
+    <div class="section-line"></div>
+  </div>
   <div class="projects-grid">
 
-    <div class="project-card">
-      <i class="fa fa-code"></i>
+    <div class="project-card stagger-1">
+      <div class="project-icon"><i class="fa fa-code"></i></div>
       <h3>Heap Insertion Implementation</h3>
-      <span>C++</span>
+      <span class="project-tag">C++</span>
       <p>Implemented heap insertion maintaining proper heap structure.</p>
     </div>
 
-    <div class="project-card">
-      <i class="fa fa-microchip"></i>
+    <div class="project-card stagger-2">
+      <div class="project-icon"><i class="fa fa-microchip"></i></div>
       <h3>Number System Converter</h3>
-      <span>Assembly</span>
+      <span class="project-tag">Assembly</span>
       <p>Converted numbers between binary, decimal and hexadecimal.</p>
     </div>
 
-    <div class="project-card">
-      <i class="fa fa-palette"></i>
+    <div class="project-card stagger-3">
+      <div class="project-icon"><i class="fa fa-palette"></i></div>
       <h3>Magazine Designing</h3>
-      <span>Creative</span>
+      <span class="project-tag">Creative</span>
       <p>Designed a visually appealing digital magazine layout.</p>
     </div>
 
-    <div class="project-card">
-      <i class="fa fa-globe"></i>
+    <div class="project-card stagger-4">
+      <div class="project-icon"><i class="fa fa-globe"></i></div>
       <h3>Online Academy System</h3>
-      <span>OOP + Database</span>
+      <span class="project-tag">OOP + Database</span>
       <p>Developed system for managing students, courses and records.</p>
     </div>
 
   </div>
 </section>
 
-<!-- S -->
-<section id="hobbies" class="fade-in">
-  <h2><i class="fa fa-heart"></i> Personal Interests</h2>
-
+<!-- INTERESTS -->
+<section id="hobbies" class="section-reveal">
+  <div class="section-header">
+    <h2><i class="fa fa-heart"></i> Personal Interests</h2>
+    <div class="section-line"></div>
+  </div>
   <div class="grid">
-    <div class="box"><i class="fa fa-utensils"></i><p>Cooking</p></div>
-    <div class="box"><i class="fa fa-code"></i><p>Coding</p></div>
-    <div class="box"><i class="fa fa-laptop"></i><p>Exploring Tech</p></div>
-    <div class="box"><i class="fa fa-gamepad"></i><p>Gaming</p></div>
+    <div class="box stagger-1"><i class="fa fa-utensils box-icon"></i><p>Cooking</p></div>
+    <div class="box stagger-2"><i class="fa fa-code box-icon"></i><p>Coding</p></div>
+    <div class="box stagger-3"><i class="fa fa-laptop box-icon"></i><p>Exploring Tech</p></div>
+    <div class="box stagger-4"><i class="fa fa-gamepad box-icon"></i><p>Gaming</p></div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="fade-in">
-  <h2><i class="fa fa-envelope"></i> Contact</h2>
-  <p>Email: fizat0250@gmail.com</p>
+<section id="contact" class="section-reveal">
+  <div class="section-header">
+    <h2><i class="fa fa-envelope"></i> Get In Touch</h2>
+    <div class="section-line"></div>
+  </div>
+  <p class="section-desc">Have a project in mind or just want to say hi? Feel free to reach out!</p>
+  <a href="mailto:fizat0250@gmail.com" class="contact-btn">
+    <i class="fa fa-paper-plane"></i> fizat0250@gmail.com
+  </a>
 </section>
+
+<!-- SCROLL TO TOP -->
+<button class="scroll-top" id="scrollTop" title="Back to top">
+  <i class="fa fa-chevron-up"></i>
+</button>
+
+<script>
+// ── Intersection Observer: reveal sections on scroll ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.section-reveal').forEach(el => observer.observe(el));
+
+// ── Typewriter for hero name ──
+const fullName = "FIZA TARIQ";
+let charIdx = 0;
+const nameEl = document.getElementById('typedName');
+const blinkEl = document.querySelector('.cursor-blink');
+
+function typeWriter() {
+  if (charIdx < fullName.length) {
+    nameEl.textContent += fullName[charIdx++];
+    setTimeout(typeWriter, 110);
+  } else {
+    blinkEl.classList.add('blinking');
+  }
+}
+setTimeout(typeWriter, 900);
+
+// ── Scroll progress bar ──
+const progressBar = document.getElementById('scrollProgress');
+function updateProgress() {
+  const scrolled = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+  progressBar.style.width = (scrolled * 100) + '%';
+}
+
+// ── Scroll to top button ──
+const scrollTopBtn = document.getElementById('scrollTop');
+function onScroll() {
+  updateProgress();
+  scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+
+  // Navbar active link
+  let current = '';
+  document.querySelectorAll('section[id]').forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.classList.toggle('active', link.dataset.section === current);
+  });
+
+  // Parallax
+  document.querySelectorAll('.floating-shapes span').forEach((el, i) => {
+    el.style.transform = `translateY(${window.scrollY * (i + 1) * 0.18}px)`;
+  });
+  document.querySelectorAll('.bg-icons i').forEach((el, i) => {
+    el.style.transform = `translateY(${window.scrollY * (i + 1) * 0.08}px)`;
+  });
+}
+
+window.addEventListener('scroll', onScroll, { passive: true });
+scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// ── Cursor glow ──
+const glow = document.getElementById('cursorGlow');
+document.addEventListener('mousemove', e => {
+  glow.style.left = e.clientX + 'px';
+  glow.style.top  = e.clientY + 'px';
+});
+</script>
 
 </body>
 </html>
