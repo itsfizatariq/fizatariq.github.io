@@ -68,22 +68,8 @@ html { scroll-behavior: smooth; }
   border-radius: 0 2px 2px 0;
 }
 
-/* ── Animated Background ── */
-.bg-animation {
-  position: fixed;
-  width: 100%; height: 100%;
-  background: linear-gradient(-45deg, var(--bg-g1), var(--bg-g2), var(--bg-g3), var(--bg-g4));
-  background-size: 400% 400%;
-  animation: gradientMove 15s ease infinite;
-  z-index: -3;
-  transform: translateZ(0);
-}
-
-@keyframes gradientMove {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+/* ── Background (plain, handled by body) ── */
+.bg-animation { display: none; }
 
 /* ── Tech Grid Overlay ── */
 .tech-grid {
@@ -106,59 +92,11 @@ html { scroll-behavior: smooth; }
   pointer-events: none;
 }
 
-/* ── BG Icons ── */
-.bg-icons {
-  position: fixed;
-  width: 100%; height: 100%;
-  z-index: -1;
-  pointer-events: none;
-}
+/* ── BG Icons (hidden) ── */
+.bg-icons { display: none; }
 
-.bg-icons i {
-  position: absolute;
-  font-size: 32px;
-  color: rgba(99,102,241, var(--icon-opacity));
-  will-change: transform;
-  transition: transform 0.2s linear;
-}
-
-.bg-icons i:nth-child(1)  { top: 8%;  left: 6%;  }
-.bg-icons i:nth-child(2)  { top: 18%; left: 82%; }
-.bg-icons i:nth-child(3)  { top: 35%; left: 12%; }
-.bg-icons i:nth-child(4)  { top: 52%; left: 72%; }
-.bg-icons i:nth-child(5)  { top: 68%; left: 22%; }
-.bg-icons i:nth-child(6)  { top: 78%; left: 62%; }
-.bg-icons i:nth-child(7)  { top: 88%; left: 38%; }
-.bg-icons i:nth-child(8)  { top: 28%; left: 48%; }
-.bg-icons i:nth-child(9)  { top: 45%; left: 90%; }
-.bg-icons i:nth-child(10) { top: 60%; left: 3%;  }
-.bg-icons i:nth-child(11) { top: 90%; left: 15%; }
-.bg-icons i:nth-child(12) { top: 14%; left: 35%; }
-
-/* ── Floating Blobs ── */
-.floating-shapes span {
-  position: fixed;
-  width: 300px; height: 300px;
-  border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.40;
-  animation: floatBlob 14s infinite ease-in-out;
-  will-change: transform;
-  z-index: -1;
-}
-
-[data-theme="dark"] .floating-shapes span { opacity: 0.18; }
-
-.floating-shapes span:nth-child(1) { background: #c7d2fe; top: 5%;  left: 5%; }
-.floating-shapes span:nth-child(2) { background: #fbcfe8; top: 30%; left: 70%; animation-delay: 4s; }
-.floating-shapes span:nth-child(3) { background: #bae6fd; top: 65%; left: 10%; animation-delay: 8s; }
-.floating-shapes span:nth-child(4) { background: #d9f99d; top: 80%; left: 75%; animation-delay: 11s; }
-
-@keyframes floatBlob {
-  0%   { transform: translateY(0) scale(1); }
-  50%  { transform: translateY(-55px) scale(1.05); }
-  100% { transform: translateY(0) scale(1); }
-}
+/* ── Floating Blobs (hidden) ── */
+.floating-shapes { display: none; }
 
 /* ── Custom Cursor Glow ── */
 .cursor-glow {

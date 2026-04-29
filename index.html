@@ -278,20 +278,11 @@
 // ── Dark / Light mode ──
 const themeToggle = document.getElementById('themeToggle');
 const themeIcon   = document.getElementById('themeIcon');
-const bgAnimation = document.getElementById('bgAnimation');
-
-const BG_COLORS = {
-  light: ['#eef2ff', '#fdf4ff', '#f0f9ff', '#ecfeff'],
-  dark:  ['#0f172a', '#1a103a', '#0c1929', '#071523']
-};
 
 function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
   localStorage.setItem('theme', theme);
   themeIcon.className = theme === 'dark' ? 'fa fa-sun' : 'fa fa-moon';
-  // Directly update backgroundImage so GPU-composited layer re-renders correctly
-  const c = BG_COLORS[theme];
-  bgAnimation.style.backgroundImage = `linear-gradient(-45deg, ${c[0]}, ${c[1]}, ${c[2]}, ${c[3]})`;
 }
 
 applyTheme(localStorage.getItem('theme') || 'dark');
@@ -355,9 +346,6 @@ function onScroll() {
   document.querySelectorAll('.floating-shapes span').forEach((el, i) => {
     el.style.transform = `translateY(${window.scrollY * (i + 1) * 0.18}px)`;
   });
-  document.querySelectorAll('.bg-icons i').forEach((el, i) => {
-    el.style.transform = `translateY(${window.scrollY * (i + 1) * 0.08}px)`;
-  });
 }
 
 window.addEventListener('scroll', onScroll, { passive: true });
@@ -370,12 +358,12 @@ document.addEventListener('mousemove', e => {
   glow.style.top  = e.clientY + 'px';
 });
 
-// ── Matrix digital-rain tech canvas ──
+// ── Minimal falling binary tech canvas ──
 (function () {
   const canvas = document.getElementById('techCanvas');
   const ctx = canvas.getContext('2d');
-  const CHARS = '01アイウエオカキクケコ{}[]<>/\\|ABCDEFabcdef#$%@&*!?';
-  const FONT_SIZE = 13;
+  const CHARS = '01';
+  const FONT_SIZE = 16;
   let drops = [];
   let animId;
 
@@ -389,8 +377,8 @@ document.addEventListener('mousemove', e => {
   function getColors() {
     const dark = document.documentElement.getAttribute('data-theme') === 'dark';
     return dark
-      ? { head: 'rgba(165,180,252,0.85)', trail: 'rgba(129,140,248,0.3)', fade: 'rgba(15,23,42,0.08)' }
-      : { head: 'rgba(79,70,229,0.75)',   trail: 'rgba(99,102,241,0.22)', fade: 'rgba(248,250,252,0.08)' };
+      ? { head: 'rgba(165,180,252,0.18)', fade: 'rgba(15,23,42,0.12)' }
+      : { head: 'rgba(99,102,241,0.13)',  fade: 'rgba(248,250,252,0.12)' };
   }
 
   function draw() {
@@ -398,26 +386,16 @@ document.addEventListener('mousemove', e => {
     ctx.fillStyle = col.fade;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.font = `${FONT_SIZE}px "Courier New", monospace`;
+    ctx.fillStyle = col.head;
 
     for (let i = 0; i < drops.length; i++) {
       const char = CHARS[Math.floor(Math.random() * CHARS.length)];
-      const x = i * FONT_SIZE;
-      const y = drops[i] * FONT_SIZE;
+      ctx.fillText(char, i * FONT_SIZE, drops[i] * FONT_SIZE);
 
-      // Bright head character
-      ctx.fillStyle = col.head;
-      ctx.fillText(char, x, y);
-
-      // Slightly dimmer character one step behind for trail depth
-      if (drops[i] > 1) {
-        ctx.fillStyle = col.trail;
-        ctx.fillText(CHARS[Math.floor(Math.random() * CHARS.length)], x, y - FONT_SIZE);
-      }
-
-      if (y > canvas.height && Math.random() > 0.975) {
+      if (drops[i] * FONT_SIZE > canvas.height && Math.random() > 0.975) {
         drops[i] = 0;
       }
-      drops[i] += 0.4;
+      drops[i] += 0.3;
     }
 
     animId = requestAnimationFrame(draw);
