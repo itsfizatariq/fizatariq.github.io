@@ -97,6 +97,15 @@ html { scroll-behavior: smooth; }
   background-size: 60px 60px;
 }
 
+/* ── Tech Canvas (connecting dots) ── */
+.tech-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
 /* ── BG Icons ── */
 .bg-icons {
   position: fixed;

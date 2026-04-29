@@ -21,8 +21,9 @@
 <div class="scroll-progress" id="scrollProgress"></div>
 
 <!-- BACKGROUND -->
-<div class="bg-animation"></div>
+<div class="bg-animation" id="bgAnimation"></div>
 <div class="tech-grid"></div>
+<canvas class="tech-canvas" id="techCanvas"></canvas>
 <div class="bg-icons">
   <i class="fa fa-code"></i>
   <i class="fa fa-database"></i>
@@ -277,17 +278,27 @@
 // ── Dark / Light mode ──
 const themeToggle = document.getElementById('themeToggle');
 const themeIcon   = document.getElementById('themeIcon');
-const savedTheme  = localStorage.getItem('theme') || 'light';
+const bgAnimation = document.getElementById('bgAnimation');
 
-document.documentElement.setAttribute('data-theme', savedTheme);
-themeIcon.className = savedTheme === 'dark' ? 'fa fa-sun' : 'fa fa-moon';
+const BG_COLORS = {
+  light: ['#eef2ff', '#fdf4ff', '#f0f9ff', '#ecfeff'],
+  dark:  ['#0f172a', '#1a103a', '#0c1929', '#071523']
+};
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('theme', theme);
+  themeIcon.className = theme === 'dark' ? 'fa fa-sun' : 'fa fa-moon';
+  // Directly update backgroundImage so GPU-composited layer re-renders correctly
+  const c = BG_COLORS[theme];
+  bgAnimation.style.backgroundImage = `linear-gradient(-45deg, ${c[0]}, ${c[1]}, ${c[2]}, ${c[3]})`;
+}
+
+applyTheme(localStorage.getItem('theme') || 'light');
 
 themeToggle.addEventListener('click', () => {
-  const current = document.documentElement.getAttribute('data-theme');
-  const next = current === 'dark' ? 'light' : 'dark';
-  document.documentElement.setAttribute('data-theme', next);
-  localStorage.setItem('theme', next);
-  themeIcon.className = next === 'dark' ? 'fa fa-sun' : 'fa fa-moon';
+  const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  applyTheme(next);
 });
 
 // ── Intersection Observer: reveal sections on scroll ──
@@ -358,6 +369,81 @@ document.addEventListener('mousemove', e => {
   glow.style.left = e.clientX + 'px';
   glow.style.top  = e.clientY + 'px';
 });
+
+// ── Connecting-dots tech canvas ──
+(function () {
+  const canvas = document.getElementById('techCanvas');
+  const ctx = canvas.getContext('2d');
+  const PARTICLE_COUNT = 70;  // number of animated dots
+  const MAX_DIST = 150;       // pixel distance within which connecting lines are drawn
+  let particles = [];
+  let animId;
+
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  function spawn() {
+    particles = [];
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push({
+        x:  Math.random() * canvas.width,
+        y:  Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.55,
+        vy: (Math.random() - 0.5) * 0.55,
+        r:  Math.random() * 1.8 + 1.2
+      });
+    }
+  }
+
+  function colors() {
+    const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    return dark
+      ? { dot: 'rgba(129,140,248,', line: 'rgba(129,140,248,' }
+      : { dot: 'rgba(99,102,241,',  line: 'rgba(99,102,241,' };
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const col = colors();
+
+    for (const p of particles) {
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0 || p.x > canvas.width)  { p.vx *= -1; p.x = Math.max(0, Math.min(canvas.width,  p.x)); }
+      if (p.y < 0 || p.y > canvas.height) { p.vy *= -1; p.y = Math.max(0, Math.min(canvas.height, p.y)); }
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = col.dot + '0.75)';
+      ctx.fill();
+    }
+
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx   = particles[i].x - particles[j].x;
+        const dy   = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < MAX_DIST) {
+          const alpha = (1 - dist / MAX_DIST) * 0.55;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = col.line + alpha + ')';
+          ctx.lineWidth = 0.9;
+          ctx.stroke();
+        }
+      }
+    }
+
+    animId = requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', () => { resize(); spawn(); });
+  resize();
+  spawn();
+  draw();
+})();
 </script>
 
 </body>
